@@ -1,0 +1,30 @@
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Dekko', cursive;
+  line-height: 1.3;
+  overflow-y: scroll;
+  background: linear-gradient(to right bottom, #41516c, #607591);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0.5em 0;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+p {
+  margin: 1em 0;
+}

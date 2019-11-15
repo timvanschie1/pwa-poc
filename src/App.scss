@@ -1,0 +1,90 @@
+@import "generic";
+@import "mixins";
+
+.App {
+  margin: 0 auto;
+  width: 800px;
+  max-width: 100%;
+  padding: 3em 2em;
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+/**
+ * Search
+ */
+
+.search {
+  color: #555;
+
+  &__label {
+    display: inline-block;
+    margin-right: -1em;
+    font-size: 1.5em;
+    transform: translateY(-0.1em);
+  }
+
+  &__field {
+    font-size: 1.7em;
+    text-align: center;
+    padding: 10px 45px 10px 25px;
+    max-width: 150px;
+    border: none;
+    border-radius: 10px;
+    color: inherit;
+    background-color: #fff;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button {
+    margin-left: -50px;
+    border: 0;
+    background: transparent;
+    transform: translateY(0.6em);
+
+    img {
+      display: block;
+      height: 30px;
+    }
+  }
+}
+
+/**
+ * Comic
+ */
+
+.comic {
+  &__title {
+    font-size: 3em;
+  }
+
+  &__image {
+    display: block;
+    margin: auto;
+    padding: 15px;
+    max-width: 100%;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    background: #fff;
+  }
+
+  &__description {
+    font-size: 1.7em;
+  }
+
+  &__year {
+    margin-top: 0.5em;
+    font-size: 0.5em;
+  }
+}
