@@ -28,7 +28,7 @@ function App() {
                 <input id="search" className="search__field" type="number" value={comicId}
                        onChange={e => setComicId(e.target.value)}/>
                 <button className="search__button">
-                    <img src="./search.svg" alt="Zoeken"/>
+                    <img src="./static/search.svg" alt="Zoeken"/>
                 </button>
             </form>
             {comic
