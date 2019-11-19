@@ -1,14 +1,76 @@
-@import "generic";
-@import "mixins";
+@import '../../assets/scss/all.scss';
 
 .App {
+  position: relative;
   margin: 0 auto;
   width: 800px;
   max-width: 100%;
-  padding: 3em 2em;
+  padding: 100px 5px 0;
   border-radius: 10px;
   text-align: center;
   color: #fff;
+  overflow: hidden;
+
+  @media screen and (min-width: 700px) {
+    padding-top: 40px;
+  }
+}
+
+/**
+ * Cache
+ */
+
+.cache {
+  position: fixed;
+  top: -25px;
+  right: -105px;
+  padding: 40px 70px 10px;
+  background-color: hotpink;
+  transform: rotate(45deg);
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+
+  h2 {
+    margin: 0;
+  }
+
+  .loading {
+    &__dot {
+      margin-left: 0.1em;
+      margin-right: 0.1em;
+      opacity: 0;
+      animation: showHideDot 1.5s ease-in-out infinite;
+
+      &--1 { animation-delay: 0.2s; }
+      &--2 { animation-delay: 0.4s; }
+      &--3 { animation-delay: 0.6s; }
+
+      @keyframes showHideDot {
+        0% { opacity: 0; }
+        50% { opacity: 1; }
+        60% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+    }
+  }
+
+  &__info {
+    margin: 0 0 0.5em;
+  }
+
+  button {
+    margin: 0 2px;
+    padding: 2px 8px;
+    line-height: 1.1;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: none;
+
+    &:active,
+    &:focus {
+      outline: none;
+      border: 1px solid #333;
+    }
+  }
 }
 
 /**
@@ -84,6 +146,7 @@
   }
 
   &__year {
+    display: block;
     margin-top: 0.5em;
     font-size: 0.5em;
   }
