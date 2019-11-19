@@ -13,13 +13,7 @@ function App() {
     const [lastFetchSucceeded, setLastFetchSucceeded] = useState(true);
 
     useEffect(() => {
-        if (!comicId) {
-            setComicId(1);
-            return;
-        }
-
-        if (comicId > MAX_COMIC_NR) {
-            setComicId(2228);
+        if (!comicId || comicId === '0') {
             return;
         }
 
@@ -140,8 +134,10 @@ function App() {
                        className="search__field"
                        type="number"
                        value={comicId}
-                       min="1"
+                       min="0"
+                       max={MAX_COMIC_NR}
                        autoFocus
+                       pattern="\d*"
                        onChange={e => setComicId(e.target.value)}/>
                 <button disabled className="search__button">
                     <img src="./assets/search.svg" alt="Zoeken"/>
