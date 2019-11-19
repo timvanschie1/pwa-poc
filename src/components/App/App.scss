@@ -151,3 +151,39 @@
     font-size: 0.5em;
   }
 }
+
+.offline {
+  &__cached {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: auto;
+    padding: 0;
+    width: 100%;
+
+    li {
+      position: relative;
+      margin: 3px;
+      height: 100px;
+    }
+
+    a {
+      display: block;
+      height: 100%;
+      text-decoration: none;
+    }
+
+    img {
+      max-height: 100%;
+      padding: 3px;
+      background: #fff;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .offline__cached-nr {
+      position: absolute;
+      bottom: 3px;
+      font-weight: bold;
+    }
+  }
+}

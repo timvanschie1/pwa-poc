@@ -48,16 +48,16 @@ function App() {
             cache.keys()
                 .then(keys => {
                     const cachedComicsRequests = keys.filter(key => key.url.includes('xkcd.now.sh'));
-                    // const cachedComicsResponses = cachedComicsRequests.map(request => {
-                    //     cache.match(request).then(response => response.json());
-                    // });
+                    const cachedComicsResponses = cachedComicsRequests.map(request => {
+                        return cache.match(request)
+                            .then(response => response.json())
+                    });
 
-                    // Promise.all(cachedComicsResponses).then(() => {
-                    //         console.dir(cachedComicsResponses);
-                    //         setCachedComics(cachedComicsResponses);
-                    //         setNrOfCachedComics(cachedComicsResponses.length);
-                    //     }
-                    // );
+                    Promise.all(cachedComicsResponses).then(responses => {
+                            setCachedComics(responses);
+                            setNrOfCachedComics(responses.length);
+                        }
+                    );
 
                     setNrOfCachedComics(cachedComicsRequests.length);
                 });
@@ -159,17 +159,17 @@ function App() {
                             <h1 className="offline__title">Je bent offline</h1>
                             <p>Deze eerder opgeslagen comics kun je wel bekijken:</p>
                             <ul className="offline__cached">
-                                {/*{cachedComics.map(cachedComic =>*/}
-                                {/*    <li>*/}
-                                {/*        <a href="#" onClick={e => {*/}
-                                {/*            e.preventDefault();*/}
-                                {/*            setComicId(cachedComic.num);*/}
-                                {/*        }}>*/}
-                                {/*            <img src={cachedComic.img} alt=""/>*/}
-                                {/*            <span className="offline__cached-nr">{cachedComic.num}</span>*/}
-                                {/*        </a>*/}
-                                {/*    </li>*/}
-                                {/*)}*/}
+                                {cachedComics.map(cachedComic =>
+                                    <li>
+                                        <a href="#" onClick={e => {
+                                            e.preventDefault();
+                                            setComicId(cachedComic.num);
+                                        }}>
+                                            <img src={cachedComic.img} alt=""/>
+                                            <span className="offline__cached-nr">{cachedComic.num}</span>
+                                        </a>
+                                    </li>
+                                )}
                             </ul>
                         </div>
                     )
