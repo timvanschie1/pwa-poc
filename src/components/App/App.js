@@ -3,9 +3,8 @@ import './App.scss';
 
 function App() {
     const MAX_COMIC_NR = 2228;
-
-    const [cacheIsSupported, setCacheIsSupported] = useState('caches' in self);
-    const [swIsSupported, setSwIfSupported] = useState('serviceWorker' in navigator);
+    const cacheIsSupported = 'caches' in self;
+    const swIsSupported = 'serviceWorker' in navigator;
 
     const [comicId, setComicId] = useState('1');
     const [comic, setComic] = useState({});
@@ -16,6 +15,10 @@ function App() {
     useEffect(() => {
         if (!comicId || comicId === '0') {
             return;
+        }
+
+        if (comicId > MAX_COMIC_NR) {
+            setComicId(MAX_COMIC_NR);
         }
 
         fetchComic();
@@ -59,9 +62,11 @@ function App() {
                             .then(response => response.json())
                     });
 
-                    Promise.all(cachedComicsResponses).then(responses => {
-                            setCachedComics(responses);
-                            setNrOfCachedComics(responses.length);
+                    Promise.all(cachedComicsResponses)
+                        .then(responses => responses.sort((a, b) => a.num-b.num))
+                        .then(sortedResponses => {
+                            setCachedComics(sortedResponses);
+                            setNrOfCachedComics(sortedResponses.length);
                         }
                     );
                 });
@@ -110,8 +115,15 @@ function App() {
         }
     }
 
-    function handleSubmit(e) {
+    function handleIncrementSearch(e, increment) {
         e.preventDefault();
+        const newComicId = parseInt(comicId) + increment;
+
+        if (newComicId < 1 || newComicId > MAX_COMIC_NR) {
+            return;
+        }
+
+        setComicId(newComicId);
     }
 
     const renderCacheInfo = (
@@ -132,7 +144,8 @@ function App() {
     );
 
     const renderForm = (
-        <form className="search" onSubmit={handleSubmit}>
+        <form className="search" onSubmit={e => e.preventDefault()}>
+            <a href="#" className="search__button" onClick={e => handleIncrementSearch(e, -1)}>-</a>
             <label className="search__label" htmlFor="search">#</label>
             <input id="search"
                    className="search__field"
@@ -142,10 +155,11 @@ function App() {
                    max={MAX_COMIC_NR}
                    autoFocus
                    pattern="\d*"
-                   onChange={e => setComicId(e.target.value)}/>
-            <button disabled className="search__button">
-                <img src="./assets/search.svg" alt="Zoeken"/>
-            </button>
+                   onChange={e => {
+                       e.preventDefault();
+                       setComicId(e.target.value);
+                   }}/>
+            <a href="#" className="search__button" onClick={e => handleIncrementSearch(e, 1)}>+</a>
         </form>
     );
 
@@ -163,7 +177,7 @@ function App() {
     const renderOfflineFallback = (
         <div className="offline">
             <h1 className="offline__title">Je bent offline</h1>
-            {cacheIsSupported
+            {cacheIsSupported && cachedComics.length > 0
                 ? (
                     <React.Fragment>
                         <p>Deze eerder opgeslagen comics kun je wel bekijken:</p>

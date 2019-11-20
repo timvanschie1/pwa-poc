@@ -28,6 +28,7 @@
   background-color: hotpink;
   transform: rotate(45deg);
   text-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  z-index: 1;
 
   h2 {
     margin: 0;
@@ -80,6 +81,8 @@
     border: 1px solid transparent;
     border-radius: 10px;
     box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 
     &:active,
     &:focus {
@@ -94,19 +97,21 @@
  */
 
 .search {
+  display: flex;
+  justify-content: center;
   color: #555;
 
   &__label {
-    display: inline-block;
-    margin-right: -1em;
-    font-size: 1.5em;
-    transform: translateY(-0.1em);
+    position: absolute;
+    font-size: 1em;
+    transform: translate(-40px, 18px);
+    z-index: 1;
   }
 
   &__field {
     font-size: 1.7em;
     text-align: center;
-    padding: 10px 45px 10px 25px;
+    padding: 10px 15px 10px 25px;
     max-width: 150px;
     border: none;
     border-radius: 10px;
@@ -127,14 +132,16 @@
   }
 
   &__button {
-    margin-left: -50px;
-    border: 0;
-    background: transparent;
-    transform: translateY(0.6em);
+    font-size: 2em;
+    line-height: 1;
+    padding: 10px;
+    text-decoration: none;
 
-    img {
-      display: block;
-      height: 30px;
+    &,
+    &:focus,
+    &:hover,
+    &:active {
+      color: #fff;
     }
   }
 }
@@ -169,6 +176,15 @@
 }
 
 .offline {
+  &__title {
+    margin-bottom: 0;
+  }
+
+  p {
+    font-size: 1.3em;
+    margin: 0.5em 0 1em;
+  }
+
   &__cached {
     display: flex;
     flex-wrap: wrap;
@@ -198,8 +214,12 @@
 
     .offline__cached-nr {
       position: absolute;
-      bottom: 3px;
-      font-weight: bold;
+      bottom: 5px;
+      padding: 5px 2px 1px;
+      line-height: .7;
+      background-color: rgba(255, 255, 255, 1);
+      right: 50%;
+      transform: translateX(50%);
     }
   }
 }
