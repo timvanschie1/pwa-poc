@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.scss';
+import 'whatwg-fetch';
+import 'promise-polyfill';
 
 function App() {
     const MAX_COMIC_NR = 2228;
@@ -210,8 +212,8 @@ function App() {
     return (
         <React.Fragment>
             {renderApiSupport}
+            {cacheIsSupported ? renderCacheInfo : ''}
             <div className="App">
-                {cacheIsSupported ? renderCacheInfo : ''}
                 {renderForm}
                 {comic
                     ? lastFetchSucceeded

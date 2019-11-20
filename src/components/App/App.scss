@@ -1,15 +1,19 @@
 @import '../../assets/scss/all.scss';
 
+.root {
+  position: relative;
+  overflow: hidden;
+}
+
 .App {
   position: relative;
   margin: 0 auto;
   width: 800px;
   max-width: 100%;
-  padding: 100px 5px 40px;
+  padding: 100px 10px 40px;
   border-radius: 10px;
   text-align: center;
   color: #fff;
-  overflow: hidden;
 
   @media screen and (min-width: 700px) {
     padding-top: 40px;
@@ -21,10 +25,13 @@
  */
 
 .cache {
-  position: fixed;
+  position: absolute;
   top: -25px;
   right: -105px;
   padding: 40px 70px 10px;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
   background-color: hotpink;
   transform: rotate(45deg);
   text-shadow: 0 0 30px rgba(0, 0, 0, 0.4);

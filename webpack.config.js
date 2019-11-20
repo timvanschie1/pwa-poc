@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const entryConfig = {
     mode: 'development',
@@ -98,6 +98,13 @@ const entryConfig = {
             },
         ]),
     ],
+
+    resolve: {
+        alias: {
+            "react": "preact/compat",
+            "react-dom": "preact/compat"
+        }
+    }
 };
 
 module.exports = [entryConfig];
