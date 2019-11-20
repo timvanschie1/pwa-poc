@@ -14,7 +14,7 @@ self.addEventListener('fetch', event => {
     event.respondWith(async function () {
         const isWebpackThingy = url.includes('sockjs-node');
         if (isWebpackThingy) {
-            return await fetch(url).catch(err => console.log(err));
+            return await fetch(url);
         }
 
         let fetchResponseP;

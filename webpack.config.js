@@ -3,7 +3,6 @@ const TerserJSPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -77,11 +76,6 @@ const entryConfig = {
     },
 
     plugins: [
-        new BrowserSyncPlugin({
-            host: 'localhost',
-            port: 3000,
-            proxy: 'http://localhost:8080/'
-        }),
         new WriteFilePlugin(),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({

@@ -30,7 +30,7 @@ function App() {
         fetch('https://xkcd.now.sh/?comic=' + comicId, {mode: 'cors'})
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Failed to fetch.');
+                    throw new Error();
                 }
                 return response.json();
             })
@@ -41,7 +41,6 @@ function App() {
                 setLastFetchSucceeded(true);
             })
             .catch(err => {
-                console.error(err);
                 window.clearTimeout(showLoaderAfterShortTime);
                 updateCacheInfo();
                 setLastFetchSucceeded(false);
@@ -183,7 +182,7 @@ function App() {
                         <p>Deze eerder opgeslagen comics kun je wel bekijken:</p>
                         <ul className="offline__cached">
                             {cachedComics.map(cachedComic =>
-                                <li>
+                                <li key={cachedComic.num}>
                                     <a href="#" onClick={e => {
                                         e.preventDefault();
                                         setComicId(cachedComic.num);
