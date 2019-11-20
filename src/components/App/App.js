@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.scss';
 import 'whatwg-fetch';
-import 'promise-polyfill';
+import 'promise-polyfill/src/polyfill';
 
 function App() {
     const MAX_COMIC_NR = 2228;
@@ -147,7 +147,6 @@ function App() {
     const renderForm = (
         <form className="search" onSubmit={e => e.preventDefault()}>
             <a href="#" className="search__button" onClick={e => handleIncrementSearch(e, -1)}>-</a>
-            <label className="search__label" htmlFor="search">#</label>
             <input id="search"
                    className="search__field"
                    type="number"
@@ -160,6 +159,7 @@ function App() {
                        e.preventDefault();
                        setComicId(e.target.value);
                    }}/>
+            <label className="search__label" htmlFor="search">#</label>
             <a href="#" className="search__button" onClick={e => handleIncrementSearch(e, 1)}>+</a>
         </form>
     );
