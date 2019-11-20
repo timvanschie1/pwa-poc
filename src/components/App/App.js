@@ -62,12 +62,12 @@ function App() {
                     });
 
                     Promise.all(cachedComicsResponses)
-                        .then(responses => responses.sort((a, b) => a.num-b.num))
+                        .then(responses => responses.sort((a, b) => a.num - b.num))
                         .then(sortedResponses => {
-                            setCachedComics(sortedResponses);
-                            setNrOfCachedComics(sortedResponses.length);
-                        }
-                    );
+                                setCachedComics(sortedResponses);
+                                setNrOfCachedComics(sortedResponses.length);
+                            }
+                        );
                 });
         })
     }
@@ -208,17 +208,19 @@ function App() {
     );
 
     return (
-        <div className="App">
-            {cacheIsSupported ? renderCacheInfo : ''}
-            {renderForm}
-            {comic
-                ? lastFetchSucceeded
-                    ? renderComic
-                    : renderOfflineFallback
-                : ''
-            }
+        <React.Fragment>
             {renderApiSupport}
-        </div>
+            <div className="App">
+                {cacheIsSupported ? renderCacheInfo : ''}
+                {renderForm}
+                {comic
+                    ? lastFetchSucceeded
+                        ? renderComic
+                        : renderOfflineFallback
+                    : ''
+                }
+            </div>
+        </React.Fragment>
     );
 }
 

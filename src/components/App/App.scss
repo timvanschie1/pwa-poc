@@ -5,7 +5,7 @@
   margin: 0 auto;
   width: 800px;
   max-width: 100%;
-  padding: 100px 5px 70px;
+  padding: 100px 5px 40px;
   border-radius: 10px;
   text-align: center;
   color: #fff;
@@ -81,6 +81,7 @@
     border: 1px solid transparent;
     border-radius: 10px;
     box-shadow: none;
+    background-color: #fff;
     -webkit-appearance: none;
     -moz-appearance: none;
 
@@ -134,7 +135,7 @@
   &__button {
     font-size: 2em;
     line-height: 1;
-    padding: 10px;
+    padding: 10px 20px;
     text-decoration: none;
 
     &,
@@ -152,7 +153,11 @@
 
 .comic {
   &__title {
-    font-size: 3em;
+    font-size: 2em;
+
+    @media screen and (min-width: 700px) {
+      font-size: 3em;
+    }
   }
 
   &__image {
@@ -166,6 +171,7 @@
 
   &__description {
     font-size: 1.7em;
+    margin-bottom: 0;
   }
 
   &__year {
@@ -197,6 +203,7 @@
       position: relative;
       margin: 3px;
       height: 100px;
+      max-height: 20vw;
     }
 
     a {
@@ -225,17 +232,19 @@
 }
 
 .api-support {
-  position: fixed;
-  right: 0;
-  bottom: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
   margin: 0;
-  padding: 7px 14px;
+  padding: 7px;
   font-family: Arial, sans-serif;
-  font-size: 0.9em;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.7em;
+  color: #eee;
   text-align: left;
-  background-color: #333;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+
+  @media screen and (min-width: 700px) {
+    font-size: 0.8em;
+  }
 
   h2 {
     font-size: 1.1em;
